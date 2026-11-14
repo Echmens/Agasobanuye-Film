@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Agasobanuye Firm</title>
+
+<style>
+
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* NAVIGATION */
+header {
+    background: #101b35;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+}
+
+.logo {
+    color: white;
+    font-size: 26px;
+}
+
+.logo span {
+    color: #f5a623;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #f5a623;
+}
+
+.nav-links a:focus-visible,
+.menu-btn:focus-visible,
+.btn:focus-visible,
+.whatsapp:focus-visible,
+.back-to-top:focus-visible {
+    outline: 3px solid #f5a623;
+    outline-offset: 4px;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* HOME */
+.hero {
+    min-height: 85vh;
+    background: linear-gradient(
+        rgba(10,20,40,.8),
+        rgba(10,20,40,.8)
+    ),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba")
+    center/cover no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.hero-content h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.hero-content span {
+    color: #f5a623;
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #f5a623;
+    color: #101b35;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: white;
+    transform: translateY(-2px);
+}
+
+/* ABOUT */
+.about {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 35px;
+    color: #101b35;
+    margin-bottom: 30px;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.9;
+}
+
+.about-content h3 {
+    color: #f5a623;
+    margin-bottom: 15px;
+}
+
+/* SERVICES */
+.services {
+    padding: 80px 8%;
+    text-align: center;
+    background: #e9edf4;
+}
+
+.service-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.service-card {
+    background: white;
+    padding: 35px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+}
+
+.service-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    color: #101b35;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: #555;
+    line-height: 1.7;
+}
+
+/* CONTACT */
+.contact {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.contact form {
+    max-width: 550px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact input,
+.contact textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.contact textarea {
+    height: 140px;
+    resize: vertical;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+    border-color: #f5a623;
+    outline: 2px solid rgba(245, 166, 35, .25);
+}
+
+.character-count,
+.form-status {
+    color: #555;
+    font-size: 14px;
+    text-align: left;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #f5a623;
+    color: #101b35;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity .2s, transform .2s, visibility .2s;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.contact-info {
+    margin: 30px;
+    line-height: 2.2;
+}
+
+.contact-info a {
+    color: #101b35;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.whatsapp {
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.whatsapp:hover {
+    background: #128c4a;
+}
+
+/* FOOTER */
+footer {
+    background: #101b35;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+/* MOBILE */
+@media(max-width: 900px) {
+    .service-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 650px) {
+    .navbar {
+        padding: 18px 5%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #101b35;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .service-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact {
+        padding: 55px 6%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header>
+<nav class="navbar">
+
+<h2 class="logo">
+Agasobanuye<span>Firm</span>
+</h2>
+
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<button
+class="menu-btn"
+id="menuButton"
+type="button"
+aria-label="Open navigation menu"
+aria-controls="navLinks"
+aria-expanded="false"
+>☰</button>
+
+</nav>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>
+Welcome to <span>Agasobanuye Firm</span>
+</h1>
+
+<div class="hero-actions">
+<a href="https://www.oshakurfilms.com/abasobanuzi/oshakur7" class="btn">
+REBA FILM
+</a>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+<h2>Contact Us</h2>
+
+<p>
+Do you need our services? Send us a message!
+</p>
+
+<br>
+
+<form id="contactForm">
+
+<input
+type="text"
+id="name"
+placeholder="Your Name"
+required
+>
+
+<input
+type="email"
+id="email"
+placeholder="Your Email"
+required
+>
+
+<textarea
+id="message"
+placeholder="Your Message"
+maxlength="1000"
+required
+></textarea>
+
+<p class="character-count" id="messageCount" aria-live="polite">0 / 1000 characters</p>
+
+<button type="submit" class="btn">
+Send Message
+</button>
+<p class="form-status" id="formStatus" role="status"></p>
+
+</form>
+
+<div class="contact-info">
+
+<p>📍 Kigali, Rwanda</p>
+
+<p>
+📞 <a href="tel:+250736682855">
+0736682855
+</a>
+</p>
+
+<p>
+✉️ <a href="mailto:Echmens001@gmail.com">
+Echmens001@gmail.com
+</a>
+</p>
+
+</div>
+
+<a
+class="whatsapp"
+href="https://wa.me/250736682855"
+target="_blank"
+rel="noopener noreferrer"
+>
+💬 Chat With Us on WhatsApp
+</a>
+
+</section>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">↑</button>
+
+<!-- FOOTER -->
+<footer>
+
+<p>
+&copy; <span id="year"></span>
+Agasobanuye Firm. All Rights Reserved.
+</p>
+
+<p>Made with ❤️ in Rwanda</p>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// MOBILE MENU
+const navLinks = document.getElementById("navLinks");
+const menuButton = document.getElementById("menuButton");
+
+function closeMenu() {
+    navLinks.classList.remove("active");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation menu");
+    menuButton.textContent = "☰";
+}
+
+menuButton.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("active");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+    menuButton.textContent = isOpen ? "×" : "☰";
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeMenu();
+});
+
+// CLOSE MENU AFTER CLICKING
+document.querySelectorAll(".nav-links a")
+.forEach(link => {
+    link.addEventListener("click", closeMenu);
+});
+
+// COPYRIGHT YEAR
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+// MESSAGE CHARACTER COUNT
+const messageInput = document.getElementById("message");
+const messageCount = document.getElementById("messageCount");
+
+messageInput.addEventListener("input", () => {
+    messageCount.textContent =
+        messageInput.value.length + " / 1000 characters";
+});
+
+// BACK TO TOP
+const backToTop = document.getElementById("backToTop");
+
+function updateBackToTop() {
+    const isVisible = window.scrollY > 300;
+    backToTop.classList.toggle("visible", isVisible);
+    backToTop.setAttribute("aria-hidden", String(!isVisible));
+    backToTop.tabIndex = isVisible ? 0 : -1;
+}
+
+window.addEventListener("scroll", updateBackToTop, { passive: true });
+updateBackToTop();
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// CONTACT FORM
+document.getElementById("contactForm")
+.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !message) {
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    document.getElementById("formStatus").textContent =
+        "Your email app will open with your message ready to send.";
+
+    const subject = encodeURIComponent(
+        "Message from Agasobanuye Firm Website"
+    );
+
+    const body = encodeURIComponent(
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\nMessage: " + message
+    );
+
+    window.location.href =
+    "mailto:Echmens001@gmail.com?subject=" +
+    subject + "&body=" + body;
+
+});
+
+</script>
+
+</body>
+</html>
